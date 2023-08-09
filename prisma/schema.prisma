@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model products {
+  id           String   @id @default(uuid())
+  barCode      String?
+  shortName    String   @db.String(20)
+  name         String
+  image        String?
+  cost         Float
+  price        Float
+  profitMargin Int
+  stock        Int      @default(0)
+  minStock     Int      @default(0)
+  maxStock     Int      @default(0)
+  status       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model users {
+  id        String   @id @default(uuid())
+  name      String
+  username  String
+  password  String
+  mail      String
+  image     String?
+  status    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
