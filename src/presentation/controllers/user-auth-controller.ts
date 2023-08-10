@@ -8,8 +8,8 @@ class UserAuthController {
       const { username, mail, password } = req.body
 
       const yupSchema = yup.object({
-        username: yup.string().nullable(),
-        mail: mail.null(),
+        username: yup.string().optional(),
+        mail: yup.string().optional(),
         password: yup.string().required('Senha é obrigatória')
       })
 
@@ -18,7 +18,7 @@ class UserAuthController {
       if (!data.username && !data.mail) throw new Error('Informe o username ou e-mail')
 
       const userAuthUseCase = new UserAuthUseCase();
-      const token = await userAuthUseCase.execute({ username: data.username!, mail: data.mail!, password: data.password })
+      const token = await userAuthUseCase.execute({ mail: data?.mail, password: data.password })
 
       return res.status(200).json({ token })
     } catch (err) {
