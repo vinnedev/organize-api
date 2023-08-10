@@ -7,10 +7,10 @@ export type Products = {
   cost: number;
   price: number;
   profitMargin: number;
-  stock: number;
-  minStock: number;
-  maxStock: number;
-  status: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  stock?: number;
+  minStock?: number;
+  maxStock?: number;
+  status?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 };

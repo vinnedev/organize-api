@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { UserAuthController } from '../../controllers/user-auth-controller';
+import { UserAuthController } from '../../presentation/controllers/user-auth-controller';
 
 const userSession = Router()
 
@@ -9,3 +9,4 @@ userSession.post('/session', (req, res) => {
 })
 
 export { userSession };
+

@@ -1,6 +1,7 @@
 import { Users } from "@core/entities/users";
 import { IUsersRepository } from "@core/repositories/users-repository";
 import { prismaClient } from "@prisma";
+import { Prisma } from "@prisma/client";
 
 export const UserService: IUsersRepository = {
   create: async ({ name, username, password, mail, image }: Users): Promise<Users> => {
@@ -19,6 +20,12 @@ export const UserService: IUsersRepository = {
     const listUsers = await prismaClient.users.findMany();
     return listUsers;
   },
+  findOne: async (where: Prisma.usersWhereUniqueInput): Promise<Users | null> => {
+    const findOne = await prismaClient.users.findMany({
+      where
+    })
+    return findOne[0];
+  },
   findById: async (id: string): Promise<Users | null> => {
     const findUserById = await prismaClient.users.findUnique({
       where: {
@@ -27,10 +34,9 @@ export const UserService: IUsersRepository = {
     })
     return findUserById;
   },
-  auth: async ({ username, mail, password }: Users): Promise<Users | null> => {
+  auth: async ({ mail, password }: Users): Promise<Users | null> => {
     const findOne = await prismaClient.users.findMany({
       where: {
-        username,
         mail,
         password
       }

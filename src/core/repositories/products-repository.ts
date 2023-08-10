@@ -17,7 +17,7 @@ export interface IProductsRepository {
   }: Products): Promise<Products>;
   list(): Promise<Products[]>;
   findById(id: string): Promise<Products | null>;
-  findOne(where: Prisma.productsWhereUniqueInput): Promise<Products | null>;
+  findOne(where: Partial<Prisma.productsWhereUniqueInput>): Promise<Products | null>;
   update(id: string, data: Products): Promise<Products>;
   delete(id: string): Promise<boolean>;
 }

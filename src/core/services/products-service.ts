@@ -47,10 +47,10 @@ export const ProductService: IProductsRepository = {
     return findProductById;
   },
   findOne: async (where: Prisma.productsWhereUniqueInput): Promise<Products | null> => {
-    const findOne = await prismaClient.products.findUnique({
+    const findOne = await prismaClient.products.findMany({
       where
     })
-    return findOne;
+    return findOne[0];
   },
   update: async (id: string, data: Products): Promise<Products> => {
     const updateProduct = await prismaClient.products.update({
