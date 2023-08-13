@@ -1,5 +1,4 @@
-export type Products = {
-  id?: string;
+interface Products extends BaseEntity {
   barCode?: string | null;
   shortName: string;
   name: string;
@@ -11,6 +10,4 @@ export type Products = {
   minStock?: number;
   maxStock?: number;
   status?: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
 };

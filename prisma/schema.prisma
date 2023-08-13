@@ -20,8 +20,8 @@ model products {
   minStock     Int      @default(0)
   maxStock     Int      @default(0)
   status       Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  creationDate DateTime @default(now())
+  updateDate   DateTime @updatedAt
 }
 
 model users {
@@ -59,7 +59,7 @@ model suppliers {
   anddress  anddress[]
 }
 
-model anddress {
+model anddress  {
     id String @id @default(uuid())
     zipCode String
     street String
